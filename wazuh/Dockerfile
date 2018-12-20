@@ -22,9 +22,9 @@ RUN echo "postfix postfix/mailname string wazuh-manager" | debconf-set-selection
 RUN echo "postfix postfix/main_mailer_type string 'Internet Site'" | debconf-set-selections
 
 # Install packages
-RUN apt-get update && apt-get -y install openssl postfix bsd-mailx python-boto python-pip  \
-    apt-transport-https vim expect nodejs python-cryptography wazuh-manager=${WAZUH_VERSION} \
-    wazuh-api=${WAZUH_VERSION}
+RUN apt-get update && apt-get -y install openssl postfix ca-certificates bsd-mailx python-boto python-pip  \
+    apt-transport-https vim expect nodejs python-cryptography mailutils libsasl2-2 libsasl2-modules sasl2-bin \
+    wazuh-manager=${WAZUH_VERSION} wazuh-api=${WAZUH_VERSION}
 
 # Adding first run script.
 ADD config/data_dirs.env /data_dirs.env
